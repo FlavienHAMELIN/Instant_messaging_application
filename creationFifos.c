@@ -9,7 +9,7 @@ void creationFifos(char fifo1[], char fifo2[])
 		fd = mkfifo(fifo2,0600);
 		if(fd != -1)
 		{
-			printf("%s et %s crées\n",fifo1,fifo2);
+			printf("%s and %s created\n",fifo1,fifo2);
 		}
 		
 	}

@@ -18,7 +18,6 @@ void *lecture(void *arg)
 	int fd2 = open(fifo2,O_RDONLY);
 	char lec[512];
 
-	//printf("Conversation avec %s:\n",user2);
 	do 
 	{
 		memset(lec,'\0',512);
@@ -46,14 +45,14 @@ int main(int argc, char *argv[])
 	pthread_t pt;
 	if(pthread_create(&pt, NULL, &lecture, &fifo2) == -1)
 	{
-		fprintf(stderr, "Erreur creation pthread de lecture communication12\n");
+		fprintf(stderr, "Error creating communication12 read pthread\n");
 		exit(1);
 	}
 
 	int fd1 = open(fifo1,O_WRONLY);
 	char entree[512];
-	printf("Connexion en attente avec: %s\n",user2);
-	printf("Conversation avec %s\n",user2);
+	printf("Connection waiting with: %s\n",user2);
+	printf("Conversation with %s\n",user2);
 
 	do
 	{

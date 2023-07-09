@@ -41,12 +41,12 @@ int main()
 
 	do
 	{
-		printf("\nVeuillez entrer une commande : \n\n");
-		printf(" - 'e <nom>' : s'enregister avec le nom <nom>, permet de se connecter\n");
-		printf(" - 'p <nom>' : ouvrir un dialogue avec l'utilisateur nommé <nom>\n");
-		printf(" - 'q' : quitter le processus de messagerie instantanée\n");
-		printf(" - 'l' : lister tous les utilisateurs connectés\n");
-		printf(" - 'd' : se déconnecter, impossible de dialoguer dans cet état\n\n");
+		printf("\nPlease enter a command : \n\n");
+		printf(" - 'e <username>' : register with username <username>, logs you in\n");
+		printf(" - 'p <username>' : open a dialog with the user named <username>.\n");
+		printf(" - 'q' : quit the instant messaging process\n");
+		printf(" - 'l' : list all connected users\n");
+		printf(" - 'd' : disconnect, impossible to talk to in this state\n\n");
 
 		fgets(commande,MAX-1, stdin);
 
@@ -97,15 +97,15 @@ int enregistrer(char *nom)
 {
 	if(enregistrement == 1)
 	{
-		printf("Un utilisateur est déja enregistré sur ce terminal!\n");
+		printf("A user is already registered on this terminal!\n");
 	}
 	else if(est_connecte(nom))
 	{
-		printf("Pseudo déjà utilisé.\n");
+		printf("Username already used.\n");
 	}
 	else if(strlen(nom)>12)
 	{
-		printf("Nombre de caractères max  = 12 \n");
+		printf("Maximum number of characters = 12 \n");
 	}
 	else
 	{
@@ -114,7 +114,7 @@ int enregistrer(char *nom)
 		strcat(str, " ");
 
 		enregistrement = 1;
-		printf("\nUtilisateur enregistré !\n");
+		printf("\nRegistered user!\n");
 		return 0;
 	}
 	return -1;
@@ -154,7 +154,7 @@ int parler(char *user2)
 				wait(NULL);
 			}
 
-			printf("Conversation terminée\n");
+			printf("Conversation ended\n");
 			return 0;
 		}
 
@@ -178,7 +178,7 @@ int interp_commande(char *commande)
 		{	
 			if (enregistrer(decoupe_mots(commande)) == -1)
 			{
-				printf("Echec de l'enregistrement\n");
+				printf("Registration failed\n");
 				return -1; // Problème d'enregistrement
 			}
 			break;
@@ -188,8 +188,8 @@ int interp_commande(char *commande)
 		{
 			if(parler(decoupe_mots(commande))== -1)
 			{
-				printf("Vérifiez que vous et votre contact êtes bien connectés avec la commande l.\n");
-				printf("NB: vous ne pouvez pas ouvrir un dialogue avec vous-mêmes.\n");
+				printf("Check that you and your contact are connected using the l command.\n");
+				printf("You can't open a dialogue with yourself.\n");
 				return -1;
 			}
 			break;
@@ -218,11 +218,11 @@ int interp_commande(char *commande)
 				free(str2);
 				enregistrement = 0; //déconnexion
 
-				printf("Déconnexion réussi.");
+				printf("Logout successful.");
 			}
 			else
 			{
-				printf("Aucun utilisateur connecté au terminal en ce moment... \n");
+				printf("No user logged on to the terminal at the moment... \n");
 				return -1;
 			}
 			break;
@@ -230,7 +230,7 @@ int interp_commande(char *commande)
 
 		case(108): //l
 		{
-			printf("Liste des utilisateurs connectés :\n%s\n",str);
+			printf("List of connected users :\n%s\n",str);
 			break;
 		}
 
@@ -256,14 +256,14 @@ int interp_commande(char *commande)
 				interp_commande("d");
 
 			shmdt(str);
-			printf("\nProcessus quitté !\n");
+			printf("\nThe process has ended!\n");
 			return 0;
 			break;
 		}
 
 		default:
 		{
-			printf("\nVeuillez entrer une commande valide\n");
+			printf("\nPlease enter a valid command\n");
 			break;
 		}
 	}	

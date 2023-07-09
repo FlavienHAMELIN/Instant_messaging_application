@@ -13,12 +13,12 @@ void eliminerFifos(char fifo1[], char fifo2[])
 		}
 		else
 		{
-			printf("Erreur lors de l'élimination de %s\n",fifo2);
+			printf("Error when removing %s\n",fifo2);
 		}
 	}
 	else
 	{
-		printf("Erreur lors de l'élimination de %s\n",fifo1);
+		printf("Error when removing %s\n",fifo1);
 	}
 	
 }
